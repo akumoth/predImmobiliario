@@ -1,3 +1,6 @@
+data/raw/test.parquet
+data/raw/train.parquet
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
