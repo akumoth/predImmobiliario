@@ -20,7 +20,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 test_dataset = test_dataset.drop(['state','region','type','lat','long'], axis=1)
 knn = KNeighborsRegressor(11)
 knn.fit(X_train,y_train)
-y_pred=knn.predict(X_test)
+y_pred=knn.predict(test_dataset)
 
 y_pred_df = pd.DataFrame(y_pred,columns=['pred'])
 y_pred_df = pd.cut(y_pred_df['pred'],bins=[0,1000,1999,9999999999],labels=['low','medium','high'],include_lowest=True)
