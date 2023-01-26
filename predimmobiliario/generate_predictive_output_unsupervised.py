@@ -1,16 +1,15 @@
 import pandas as pd
 import dask.dataframe as dd
 import numpy as np
-from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 
 train_dask = dd.read_parquet('../data/processed/train')
 test_dask = dd.read_parquet('../data/processed/test')
 train_dataset = train_dask.compute()
 test_dataset = test_dask.compute()
 train_dataset = train_dataset.dropna()
+train_dataset.price = np.where((train_dataset.price < 1000),1,0)
 X = train_dataset.drop(['state','region','price','type','lat','long'], axis=1)
 y = train_dataset['price']
 
